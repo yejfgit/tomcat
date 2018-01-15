@@ -16,6 +16,9 @@
 */
 package javax.servlet.jsp;
 
+import org.apache.jasper.runtime.JspFactoryImpl;
+import org.apache.jasper.security.SecurityClassLoad;
+
 import javax.servlet.Servlet;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletRequest;
@@ -72,6 +75,13 @@ public abstract class JspFactory {
      */
 
     public static JspFactory getDefaultFactory() {
+
+        if (deflt == null) {
+            JspFactoryImpl factory = new JspFactoryImpl();
+            SecurityClassLoad.securityClassLoad(factory.getClass().getClassLoader());
+            JspFactory.setDefaultFactory(factory);
+        }
+
         return deflt;
     }
 

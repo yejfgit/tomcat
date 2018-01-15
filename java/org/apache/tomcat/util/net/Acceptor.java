@@ -60,9 +60,11 @@ public class Acceptor<U> implements Runnable {
 
         int errorDelay = 0;
 
+
+
         // Loop until we receive a shutdown command
         while (endpoint.isRunning()) {
-
+            System.out.println("********************"+Thread.currentThread().getName()+"acceptor start*************************");
             // Loop if endpoint is paused
             while (endpoint.isPaused() && endpoint.isRunning()) {
                 state = AcceptorState.PAUSED;
@@ -137,6 +139,8 @@ public class Acceptor<U> implements Runnable {
                         log.error(msg, t);
                 }
             }
+
+            System.out.println("********************"+Thread.currentThread().getName()+"acceptor end*************************");
         }
         state = AcceptorState.ENDED;
     }

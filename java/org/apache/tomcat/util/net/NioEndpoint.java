@@ -696,9 +696,7 @@ public class NioEndpoint extends AbstractJsseEndpoint<NioChannel,SocketChannel> 
         public void run() {
             // Loop until destroy() is called
             while (true) {
-
                 boolean hasEvents = false;
-
                 try {
                     if (!close) {
                         hasEvents = events();
